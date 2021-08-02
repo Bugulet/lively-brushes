@@ -1,7 +1,7 @@
 let x = [], y = [], px = [], py = [], lineColor = [];
 let vx = [], vy = [];
 
-let particleCount = 100
+let particleCount = 400
 
 let canvas;
 
