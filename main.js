@@ -33,6 +33,8 @@ function draw() {
   textSize(30);
   text("press space to clear", 0, 30);
   text("press Q to switch brush", 0, 60);
+  textSize(20)
+  text(`w:${width} h:${height}`, 0, 90);
   strokeWeight(1);
   for (let i = 0; i < particleCount; i++) {
 
