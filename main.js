@@ -37,8 +37,8 @@ function draw() {
   fill(255, 255, 255, 255);
   strokeWeight(0);
   textSize(15);
-  text("press space to clear", 10, 40);
-  text("press Q to switch brush", 10, 60);
+  text("press space to clear", 0, 40);
+  text("press Q to switch brush", 0, 60);
   // textSize(20)
   // text(`w:${width} h:${height}`, 0, 90);
    
