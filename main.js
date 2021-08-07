@@ -1,4 +1,5 @@
-let layers = Array(10);
+
+let layers = Array(5);
 let currentLayer = 0;
 
 let x = [], y = [], px = [], py = [];
@@ -14,6 +15,8 @@ let colorpicker;
 
 let strokeColor;
 
+let saveButton;
+
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
 
@@ -22,9 +25,13 @@ function setup() {
     layers[i].clear();
   }
 
-
+  
   colorPicker = createColorPicker('#ff00d4');
   colorPicker.position(0, 0);
+
+  saveButton=createButton("save");
+  saveButton.position(0,40);
+  saveButton.mousePressed(SaveImage);
 
   for (let i = 0; i < particleCount; i++) {
     x.push(0);
@@ -40,12 +47,10 @@ function setup() {
 }
 function draw() {
   background(0);
-
-
   fill(255, 255, 255, 255);
   textSize(15);
-  text("press space to clear", 0, 40);
-  text("press Q to switch brush", 0, 60);
+  text("press space to clear", 0, windowHeight-30);
+  text("press Q to switch brush", 0, windowHeight-10);
 
 
   layers[currentLayer].blendMode(ADD);
@@ -144,5 +149,21 @@ function mousePressed(){
     layers[currentLayer+1].copy(layers[currentLayer],0,0,windowWidth,windowHeight,0,0,windowWidth,windowHeight); 
     currentLayer++;
   }
+}
+
+function SaveImage(){
+  // savedLayer=createGraphics(windowWidth, windowHeight);
+  // layers.forEach((layer)=>{
+  //   savedLayer.copy(layer,0,0,windowWidth,windowHeight,0,0,windowWidth,windowHeight); 
+  // })
+  // savedLayer.save("print","png");
+  fill(0, 0, 0, 255);
+  
+  text("press space to clear", 0, windowHeight-30);
+  text("press Q to switch brush", 0, windowHeight-10);
+
+  saveCanvas(canvas, 'saved drawing '+Date.now, 'png');
+  
+  fill(255, 255, 255, 255);
 }
 
