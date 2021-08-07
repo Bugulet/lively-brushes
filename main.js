@@ -88,7 +88,7 @@ function draw() {
     x[i] += vx[i];
     y[i] += vy[i];
 
-    if (mouseIsPressed && mouseButton === LEFT && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
+    if (mouseIsPressed && mouseButton === LEFT)// && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
       layers[currentLayer].line(px[i], py[i], x[i], y[i]);
       layers[currentLayer].line(width - px[i], py[i], width - x[i], y[i]);
     }
@@ -130,7 +130,7 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  if (mouseButton === LEFT  && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
+  if (mouseButton === LEFT)//  && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
     print(currentLayer);
     if (currentLayer >= layers.length - 1) {
 
