@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -13,4 +14,14 @@ body {
   /* This centers our sketch vertically. */
   align-items: center;
   background-color: black;
+}
+
+.instructions{
+  color:white;
+  position:absolute;
+  z-index: 100;
+  width: 150px;
+  top: 50px;
+  left: 0px;
+  user-select: none;
 }

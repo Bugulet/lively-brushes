@@ -1,20 +1,13 @@
 
 let layers = Array(5);
 let currentLayer = 0;
-
 let x = [], y = [], px = [], py = [];
 let vx = [], vy = [];
-
 let particleCount = 400
-
 let canvas;
-
 let currentBrush = "Default";
-
 let colorpicker;
-
 let strokeColor;
-
 let saveButton;
 
 function setup() {
@@ -25,7 +18,6 @@ function setup() {
     layers[i].clear();
   }
 
-  
   colorPicker = createColorPicker('#ff00d4');
   colorPicker.position(0, 0);
 
@@ -44,13 +36,13 @@ function setup() {
   background(0);
   //colorMode(HSB);
 
+
 }
 function draw() {
   background(0);
-  fill(255, 255, 255, 255);
+  
   textSize(15);
-  text("press space to clear", 0, windowHeight-30);
-  text("press Q to switch brush", 0, windowHeight-10);
+
 
 
   layers[currentLayer].blendMode(ADD);
@@ -68,7 +60,6 @@ function draw() {
   if(strokeColor.levels[2]<5){
     strokeColor.levels[2]=5;
   }
-  //strokeColor.setAlpha(15);
   layers[currentLayer].stroke(strokeColor);
 
   for (let i = 0; i < particleCount; i++) {
