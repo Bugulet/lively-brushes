@@ -157,13 +157,8 @@ function SaveImage(){
   //   savedLayer.copy(layer,0,0,windowWidth,windowHeight,0,0,windowWidth,windowHeight); 
   // })
   // savedLayer.save("print","png");
-  fill(0, 0, 0, 255);
-  
-  text("press space to clear", 0, windowHeight-30);
-  text("press Q to switch brush", 0, windowHeight-10);
 
-  saveCanvas(canvas, 'saved drawing '+Date.now, 'png');
+  saveCanvas(canvas, 'saved drawing ', 'png');
   
-  fill(255, 255, 255, 255);
 }
 
