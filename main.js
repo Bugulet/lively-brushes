@@ -21,8 +21,8 @@ function setup() {
   colorPicker = createColorPicker('#ff00d4');
   colorPicker.position(0, 0);
 
-  saveButton=createButton("save");
-  saveButton.position(0,40);
+  saveButton = createButton("save");
+  saveButton.position(0, 40);
   saveButton.mousePressed(SaveImage);
 
   for (let i = 0; i < particleCount; i++) {
@@ -40,7 +40,7 @@ function setup() {
 }
 function draw() {
   background(0);
-  
+
   textSize(15);
 
 
@@ -48,17 +48,17 @@ function draw() {
   layers[currentLayer].blendMode(ADD);
 
   strokeColor = colorPicker.color();
-  strokeColor.levels[0]/=10;
-  strokeColor.levels[1]/=10;
-  strokeColor.levels[2]/=10;
-  if(strokeColor.levels[0]<5){
-    strokeColor.levels[0]=5;
+  strokeColor.levels[0] /= 10;
+  strokeColor.levels[1] /= 10;
+  strokeColor.levels[2] /= 10;
+  if (strokeColor.levels[0] < 5) {
+    strokeColor.levels[0] = 5;
   }
-  if(strokeColor.levels[1]<5){
-    strokeColor.levels[1]=5;
+  if (strokeColor.levels[1] < 5) {
+    strokeColor.levels[1] = 5;
   }
-  if(strokeColor.levels[2]<5){
-    strokeColor.levels[2]=5;
+  if (strokeColor.levels[2] < 5) {
+    strokeColor.levels[2] = 5;
   }
   layers[currentLayer].stroke(strokeColor);
 
@@ -82,7 +82,7 @@ function draw() {
     x[i] += vx[i];
     y[i] += vy[i];
 
-    if (mouseIsPressed) {
+    if (mouseIsPressed && mouseButton === LEFT) {
       layers[currentLayer].line(px[i], py[i], x[i], y[i]);
       layers[currentLayer].line(width - px[i], py[i], width - x[i], y[i]);
     }
@@ -104,18 +104,18 @@ function windowResized() {
 }
 
 function keyPressed() {
-  if (key=='z' && currentLayer>1) {
+  if (key == 'z' && currentLayer > 1) {
     layers[currentLayer].clear();
     currentLayer--;
-    
-    print("juj"+currentLayer);
+
+    print("juj" + currentLayer);
   }
   if (keyCode === 32) {
-    currentLayer=0;
+    currentLayer = 0;
     print("space pressed");
     background(0);
-    layers.forEach((layer)=>layer.clear());
-    
+    layers.forEach((layer) => layer.clear());
+
   }
   if (keyCode === 81) {
     console.warn(currentBrush);
@@ -123,26 +123,28 @@ function keyPressed() {
   }
 }
 
-function mousePressed(){
-  print(currentLayer);
-  if(currentLayer>=layers.length-1){
-    
-    //copy the first layer onto the second, and delete the first one
-    layers[1].copy(layers[0],0,0,windowWidth,windowHeight,0,0,windowWidth,windowHeight); 
-    layers.shift();
-    
-    //since we shifted it, i'll just push a new element like this
-    layers.push(createGraphics(windowWidth,windowHeight));
-    layers[layers.length-1].clear();
-    currentLayer--;
-  }
-  else{
-    layers[currentLayer+1].copy(layers[currentLayer],0,0,windowWidth,windowHeight,0,0,windowWidth,windowHeight); 
-    currentLayer++;
+function mousePressed() {
+  if (mouseButton === LEFT) {
+    print(currentLayer);
+    if (currentLayer >= layers.length - 1) {
+
+      //copy the first layer onto the second, and delete the first one
+      layers[1].copy(layers[0], 0, 0, windowWidth, windowHeight, 0, 0, windowWidth, windowHeight);
+      layers.shift();
+
+      //since we shifted it, i'll just push a new element like this
+      layers.push(createGraphics(windowWidth, windowHeight));
+      layers[layers.length - 1].clear();
+      currentLayer--;
+    }
+    else {
+      layers[currentLayer + 1].copy(layers[currentLayer], 0, 0, windowWidth, windowHeight, 0, 0, windowWidth, windowHeight);
+      currentLayer++;
+    }
   }
 }
 
-function SaveImage(){
+function SaveImage() {
   // savedLayer=createGraphics(windowWidth, windowHeight);
   // layers.forEach((layer)=>{
   //   savedLayer.copy(layer,0,0,windowWidth,windowHeight,0,0,windowWidth,windowHeight); 
@@ -150,6 +152,6 @@ function SaveImage(){
   // savedLayer.save("print","png");
 
   saveCanvas(canvas, 'saved drawing ', 'png');
-  
+
 }
 
