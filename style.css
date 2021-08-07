@@ -21,7 +21,7 @@ body {
   position:absolute;
   z-index: 100;
   width: 150px;
-  top: 50px;
+  top: 80px;
   left: 0px;
   user-select: none;
 }

@@ -9,6 +9,9 @@ let currentBrush = "Default";
 let colorpicker;
 let strokeColor;
 let saveButton;
+let fuzinessSlider;
+
+let mouseDeadzoneX=150,mouseDeadzoneY=160;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -24,6 +27,9 @@ function setup() {
   saveButton = createButton("save");
   saveButton.position(0, 40);
   saveButton.mousePressed(SaveImage);
+
+  fuzinessSlider=createSlider(1,10,3,0.1);
+  fuzinessSlider.position(0,70);
 
   for (let i = 0; i < particleCount; i++) {
     x.push(0);
@@ -68,8 +74,8 @@ function draw() {
     //randomed brush
     //if(Math.abs(mouseX - x[i])>50 && Math.abs(mouseY - y[i])>50) <- cool star stuff
     if (currentBrush == "Default") {
-      vx[i] += (mouseX - x[i]) / (10 + i / 15) + random(-3, 3);
-      vy[i] += (mouseY - y[i]) / (10 + i / 15) + random(-3, 3);
+      vx[i] += (mouseX - x[i]) / (10 + i / 15) + random(-fuzinessSlider.value(), fuzinessSlider.value());
+      vy[i] += (mouseY - y[i]) / (10 + i / 15) + random(-fuzinessSlider.value(), fuzinessSlider.value());
     }
     else if (currentBrush == "Banded") {
       vx[i] += (mouseX - x[i]) / (10 + i / 15);
@@ -82,7 +88,7 @@ function draw() {
     x[i] += vx[i];
     y[i] += vy[i];
 
-    if (mouseIsPressed && mouseButton === LEFT) {
+    if (mouseIsPressed && mouseButton === LEFT && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
       layers[currentLayer].line(px[i], py[i], x[i], y[i]);
       layers[currentLayer].line(width - px[i], py[i], width - x[i], y[i]);
     }
@@ -124,7 +130,7 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  if (mouseButton === LEFT) {
+  if (mouseButton === LEFT  && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
     print(currentLayer);
     if (currentLayer >= layers.length - 1) {
 
