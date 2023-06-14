@@ -90,7 +90,7 @@ function draw() {
 
     if (mouseIsPressed && mouseButton === LEFT){// && ! (mouseX<mouseDeadzoneX && mouseY<mouseDeadzoneY && mouseX>0 && mouseY>0)) {
       layers[currentLayer].line(px[i], py[i], x[i], y[i]);
-      layers[currentLayer].line(width - px[i], py[i], width - x[i], y[i]);
+      //layers[currentLayer].line(width - px[i], py[i], width - x[i], y[i]);
     }
     vx[i] *= 0.78;
     vy[i] *= 0.78;
